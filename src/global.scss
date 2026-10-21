@@ -1,0 +1,109 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+:root {
+	--ion-font-family: "Avenir Next", "Trebuchet MS", sans-serif;
+	--ion-text-color: #f7f1ff;
+	--ion-text-color-rgb: 247, 241, 255;
+	--ion-item-color: #f7f1ff;
+	--ion-color-step-600: #f7f1ff;
+	--campus-ink: #f7f1ff;
+	--campus-paper: #0d0a12;
+	--campus-teal: #c8b6ff;
+	--campus-coral: #d7a9ff;
+	--campus-yellow: #e9d5ff;
+	--campus-line: rgba(216, 180, 254, 0.2);
+}
+
+html,
+body,
+ion-app {
+	background: var(--campus-paper);
+	color: var(--campus-ink);
+}
+
+ion-content {
+	--background: var(--campus-paper);
+	color: var(--campus-ink);
+}
+
+ion-toolbar {
+	--background: #120d18;
+	--color: var(--campus-ink);
+}
+
+ion-title,
+ion-label,
+ion-item,
+ion-input,
+ion-textarea,
+ion-select,
+ion-searchbar,
+ion-segment-button,
+ion-button,
+ion-modal,
+ion-header,
+ion-content,
+ion-card,
+ion-list,
+ion-list-header {
+	color: var(--campus-ink);
+}
+
+ion-item {
+	--color: var(--campus-ink);
+	--background: rgba(22, 15, 29, 0.82);
+	--border-color: var(--campus-line);
+}
+
+ion-input,
+ion-textarea,
+ion-select {
+	--placeholder-color: rgba(247, 241, 255, 0.7);
+	--color: var(--campus-ink);
+}
+
+ion-button {
+	--background: var(--campus-teal);
+	--background-activated: var(--campus-coral);
+	--color: #160f1d;
+	--border-radius: 4px;
+	font-weight: 800;
+	letter-spacing: 0;
+	text-transform: none;
+}
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";

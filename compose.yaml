@@ -1,0 +1,11 @@
+name: favorite-book
+
+services:
+  favorite-book:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: favorite-book:latest
+    container_name: favorite-book
+    ports:
+      - "8100:8100"

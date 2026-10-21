@@ -1,0 +1,7 @@
+{
+  "name": "campus-event-manager",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

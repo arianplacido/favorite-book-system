@@ -1,0 +1,127 @@
+<ion-header class="page-header">
+  <ion-toolbar>
+    <ion-title>
+      <span class="eyebrow">Favorite shelf / 01</span>
+      <span class="page-title">Add a book</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="form-wrap">
+    <section class="form-intro">
+      <div class="intro-mark">+</div>
+      <div>
+        <p class="kicker">Save the ones you love</p>
+        <h1>Keep your<br><em>favorite reads.</em></h1>
+        <p class="intro-copy">Capture the books you want to revisit, recommend, and never forget.</p>
+      </div>
+    </section>
+
+    <section class="event-form" aria-label="Add a favorite book">
+      <div class="form-grid">
+        <ion-item class="field field-wide">
+
+    <ion-input
+      label="Book Title"
+      labelPlacement="stacked"
+      placeholder="Enter book title"
+      [(ngModel)]="newBook.title">
+    </ion-input>
+
+      </ion-item>
+
+      <ion-item class="field">
+
+    <ion-input
+      label="Author"
+      labelPlacement="stacked"
+      placeholder="Enter author"
+      [(ngModel)]="newBook.author">
+    </ion-input>
+
+      </ion-item>
+
+      <ion-item class="field">
+
+    <ion-input
+      type="date"
+      label="Read Date"
+      labelPlacement="stacked"
+      [(ngModel)]="newBook.readDate">
+    </ion-input>
+
+      </ion-item>
+
+      <ion-item class="field">
+
+    <ion-select
+      label="Genre"
+      labelPlacement="stacked"
+      [(ngModel)]="newBook.genre">
+
+      <ion-select-option value="Fiction">
+        Fiction
+      </ion-select-option>
+
+      <ion-select-option value="Fantasy">
+        Fantasy
+      </ion-select-option>
+
+      <ion-select-option value="Mystery">
+        Mystery
+      </ion-select-option>
+
+      <ion-select-option value="Nonfiction">
+        Nonfiction
+      </ion-select-option>
+
+      <ion-select-option value="Classics">
+        Classics
+      </ion-select-option>
+
+      <ion-select-option value="Sci-Fi">
+        Sci-Fi
+      </ion-select-option>
+
+      <ion-select-option value="Other">
+        Other
+      </ion-select-option>
+
+    </ion-select>
+
+  </ion-item>
+
+
+  <ion-item>
+
+    <ion-textarea
+      label="Notes"
+      labelPlacement="stacked"
+      placeholder="Add a quick note about why you loved it"
+      [(ngModel)]="newBook.notes">
+    </ion-textarea>
+
+        </ion-item>
+      </div>
+
+      <ion-button
+        class="publish-button"
+        expand="block"
+        (click)="addBook()"
+        [disabled]="isLoading">
+
+        @if (isLoading) {
+          <ion-spinner name="crescent"></ion-spinner>
+        }
+
+        @if (!isLoading) {
+          <ion-icon name="book-outline" slot="start"></ion-icon>
+          <span>Save to favorites</span>
+        }
+
+      </ion-button>
+    </section>
+  </div>
+
+</ion-content>

@@ -1,0 +1,129 @@
+.page-header {
+	border-bottom: 1px solid var(--campus-line);
+}
+
+.page-header ion-title {
+	display: flex;
+	flex-direction: column;
+	padding: 16px 20px 14px;
+}
+
+.eyebrow,
+.kicker {
+	color: #d9c4ff;
+	font-size: 11px;
+	font-weight: 900;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+.page-title {
+	font-size: 20px;
+	font-weight: 900;
+	line-height: 1.1;
+}
+
+.form-wrap {
+	margin: 0 auto;
+	max-width: 860px;
+	padding: 28px 20px 40px;
+}
+
+.form-intro {
+	align-items: flex-start;
+	display: flex;
+	gap: 18px;
+	margin-bottom: 34px;
+}
+
+.intro-mark {
+	align-items: center;
+	background: linear-gradient(135deg, #d8b4fe, #a78bfa);
+	color: #160f1d;
+	display: flex;
+	flex: 0 0 44px;
+	font-size: 32px;
+	font-weight: 700;
+	height: 44px;
+	justify-content: center;
+	line-height: 1;
+	transform: rotate(-7deg);
+}
+
+.kicker {
+	margin: 0 0 8px;
+}
+
+h1 {
+	font-size: clamp(32px, 8vw, 58px);
+	letter-spacing: -0.04em;
+	line-height: 0.96;
+	margin: 0;
+	color: #f6f0ff;
+}
+
+h1 em {
+	color: #d9c4ff;
+	font-family: Georgia, serif;
+	font-weight: 400;
+}
+
+.intro-copy {
+	color: rgba(247, 241, 255, 0.82);
+	font-size: 15px;
+	line-height: 1.5;
+	margin: 16px 0 0;
+	max-width: 430px;
+}
+
+.event-form {
+	border-top: 2px solid var(--campus-ink);
+	padding-top: 20px;
+}
+
+.form-grid {
+	display: grid;
+	gap: 10px;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.field {
+	--background: rgba(22, 15, 29, 0.8);
+	--border-color: transparent;
+	--color: #f7f1ff;
+	--placeholder-color: rgba(247, 241, 255, 0.66);
+	--inner-border-width: 0;
+	--padding-start: 14px;
+	border: 1px solid var(--campus-line);
+	margin: 0;
+}
+
+.field-wide {
+	grid-column: 1 / -1;
+}
+
+.publish-button {
+	--background: linear-gradient(135deg, #d7a9ff, #a78bfa);
+	--background-activated: linear-gradient(135deg, #c8b6ff, #8b5cf6);
+	--color: #160f1d;
+	--box-shadow: 0 12px 28px rgba(167, 139, 250, 0.38);
+	margin: 22px 0 0;
+	min-height: 52px;
+	font-weight: 900;
+	letter-spacing: 0.02em;
+}
+
+.publish-button ion-icon,
+.publish-button span {
+	color: #160f1d;
+}
+
+@media (max-width: 560px) {
+	.form-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.field-wide {
+		grid-column: auto;
+	}
+}

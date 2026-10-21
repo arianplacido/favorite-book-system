@@ -1,0 +1,303 @@
+<ion-header class="discover-header">
+  <ion-toolbar>
+    <ion-title>
+      <span class="eyebrow">Favorite shelf / 02</span>
+      <span class="page-title">Your reading list</span>
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar
+      class="event-search"
+      placeholder="Search your favorites"
+      (ionInput)="searchChanged($event)">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="discover-wrap">
+    <section class="discover-intro">
+      <div>
+        <p class="kicker">Your next great read</p>
+        <h1>Find the<br><em>books you love.</em></h1>
+      </div>
+      <span class="event-count">{{ filteredBooks.length }}<small>saved</small></span>
+    </section>
+
+    <ion-segment
+      class="category-filter"
+      [(ngModel)]="selectedGenre"
+      (ionChange)="genreChanged($event)">
+
+    <ion-segment-button value="All">
+      <ion-label>All</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="Fiction">
+      <ion-label>Fiction</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="Fantasy">
+      <ion-label>Fantasy</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="Mystery">
+      <ion-label>Mystery</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="Nonfiction">
+      <ion-label>Nonfiction</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="Classics">
+      <ion-label>Classics</ion-label>
+    </ion-segment-button>
+
+    </ion-segment>
+
+    <ion-list class="event-list">
+
+    @for (book of filteredBooks; track book.id) {
+    <ion-item-sliding>
+
+
+      <ion-item class="event-row">
+
+        <div class="event-date" slot="start">
+          <span>{{ book.readDate | date:'MMM' }}</span>
+          <strong>{{ book.readDate | date:'dd' }}</strong>
+        </div>
+
+        <ion-label>
+          <p class="event-category">{{ book.genre }}</p>
+          <h2>
+            {{ book.title }}
+          </h2>
+
+          <p>
+            {{ book.author }} <span class="dot">/</span> {{ book.genre }}
+          </p>
+
+          <p class="event-description">
+            {{ book.notes }}
+          </p>
+
+        </ion-label>
+
+
+        <ion-button
+          fill="clear"
+          size="small"
+          (click)="openEdit(book)">
+          <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+
+        </ion-button>
+
+        <ion-button
+          class="delete-button"
+          fill="clear"
+          size="small"
+          aria-label="Delete book"
+          (click)="deleteBook(book.id)">
+          <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+
+      </ion-item>
+
+
+      <ion-item-options side="end">
+
+        <ion-item-option
+          color="danger"
+          (click)="deleteBook(book.id)">
+
+          Delete
+
+        </ion-item-option>
+
+      </ion-item-options>
+
+
+    </ion-item-sliding>
+    }
+
+    </ion-list>
+
+
+  @if (filteredBooks.length === 0) {
+    <section class="empty-state">
+      <span class="empty-number">00</span>
+      <h2>No favorites yet.</h2>
+      <p>Try another search, or be the first to save a book worth revisiting.</p>
+    </section>
+  }
+
+  </div>
+
+
+  <ion-modal
+    [isOpen]="isModalOpen"
+    (didDismiss)="closeModal()">
+
+    <ng-template>
+
+
+      <ion-header>
+
+        <ion-toolbar>
+
+          <ion-title>
+            Edit Book
+          </ion-title>
+
+
+          <ion-buttons slot="end">
+
+            <ion-button
+              (click)="closeModal()">
+
+              Close
+
+            </ion-button>
+
+          </ion-buttons>
+
+        </ion-toolbar>
+
+      </ion-header>
+
+
+      <ion-content class="ion-padding">
+
+
+        <ion-item>
+
+          <ion-input
+            label="Book Title"
+            labelPlacement="stacked"
+            [(ngModel)]="editBook.title">
+          </ion-input>
+
+        </ion-item>
+
+
+        <ion-item>
+
+          <ion-input
+            label="Author"
+            labelPlacement="stacked"
+            [(ngModel)]="editBook.author">
+          </ion-input>
+
+        </ion-item>
+
+
+        <ion-item>
+
+          <ion-input
+            type="date"
+            label="Read Date"
+            labelPlacement="stacked"
+            [(ngModel)]="editBook.readDate">
+          </ion-input>
+
+        </ion-item>
+
+
+        <ion-item>
+
+          <ion-select
+            label="Genre"
+            labelPlacement="stacked"
+            [(ngModel)]="editBook.genre">
+
+
+            <ion-select-option value="Fiction">
+              Fiction
+            </ion-select-option>
+
+            <ion-select-option value="Fantasy">
+              Fantasy
+            </ion-select-option>
+
+            <ion-select-option value="Mystery">
+              Mystery
+            </ion-select-option>
+
+            <ion-select-option value="Nonfiction">
+              Nonfiction
+            </ion-select-option>
+
+            <ion-select-option value="Classics">
+              Classics
+            </ion-select-option>
+
+            <ion-select-option value="Sci-Fi">
+              Sci-Fi
+            </ion-select-option>
+
+            <ion-select-option value="Other">
+              Other
+            </ion-select-option>
+
+
+          </ion-select>
+
+        </ion-item>
+
+
+        <ion-item>
+
+          <ion-textarea
+            label="Notes"
+            labelPlacement="stacked"
+            [(ngModel)]="editBook.notes">
+          </ion-textarea>
+
+        </ion-item>
+
+
+        <br>
+
+
+        <ion-button
+          expand="block"
+          (click)="updateBook()"
+          [disabled]="isLoading">
+
+          @if (isLoading) {
+            <ion-spinner name="crescent"></ion-spinner>
+          }
+
+
+          @if (!isLoading) {
+            <span>Update Book</span>
+          }
+
+        </ion-button>
+
+
+      </ion-content>
+
+    </ng-template>
+
+  </ion-modal>
+
+
+  <ion-toast
+    [isOpen]="showToast"
+    [message]="toastMessage"
+    [duration]="2000"
+    (didDismiss)="showToast = false">
+
+  </ion-toast>
+
+
+  <ion-loading
+    [isOpen]="isLoading"
+    message="Processing...">
+
+  </ion-loading>
+
+
+</ion-content>
