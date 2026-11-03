@@ -26,7 +26,7 @@ jobs:
         run: docker run -d --name favorite-book-app --restart unless-stopped -p 8100:8100 favorite-book-app
 
       - name: Verify app
-        shell: pwsh
+        shell: powershell
         run: |
           $success = $false
           for ($i = 1; $i -le 15; $i++) {
