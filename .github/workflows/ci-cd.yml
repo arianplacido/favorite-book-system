@@ -1,0 +1,44 @@
+name: Deploy Favorite Book System Locally
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, Windows, X64]
+    
+    steps:
+      - name: Checkout latest code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t favorite-book-app .
+
+      - name: Remove previous container
+        run: docker rm -f favorite-book-app
+        continue-on-error: true
+
+      - name: Start updated container
+        run: docker run -d --name favorite-book-app --restart unless-stopped -p 8100:8100 favorite-book-app
+
+      - name: Verify app
+        shell: pwsh
+        run: |
+          $success = $false
+          for ($i = 1; $i -le 15; $i++) {
+              try {
+                  Invoke-WebRequest http://localhost:8100/ -UseBasicParsing -TimeoutSec 2
+                  $success = $true
+                  break
+              } catch {
+                  Start-Sleep -Seconds 2
+              }
+          }
+          if (-not $success) {
+              docker logs favorite-book-app
+              exit 1
+          }
